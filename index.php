@@ -225,7 +225,21 @@ array_push($arrayconfronti, $idlead);
 		</div>
 		<div style="text-align:center;margin-top:20px;margin-bottom:20px;">
 		<a href="index.php?mese=<?php echo $datameseprec ?>&idutente=<?php echo $idutente ?>&ambiente=<?php echo $ambiente ?>" class="previous">&laquo; Mese Precedente</a>
+
+<?php 
+	if ($datamesesucc == 1){
+		?>
+<a href="index.php?mese=<?php echo $datamesesucc ?>&idutente=<?php echo $idutente ?>&ambiente=<?php echo $ambiente ?>" class="next">Torna a Gennaio &raquo;</a>
+			<?php
+	} else {
+	
+	?>
+			
 <a href="index.php?mese=<?php echo $datamesesucc ?>&idutente=<?php echo $idutente ?>&ambiente=<?php echo $ambiente ?>" class="next">Mese Successivo &raquo;</a>
+<?php
+			} 
+	
+	?>
 </div>
 </div>
 
