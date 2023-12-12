@@ -9,7 +9,7 @@ if (isset($_COOKIE["AccessoConsentitoMautic"])) {
 <?php
 //CALENDARIO COMMERCIALE MAUTIC - 2023 DANIEL INTRIERI - TUTTI I DIRITTI RISERVATI
 //CONCESSO PER L'UTILIZZO A 360FORMA
-//VERSIONE 4.30 rel del 13-10-2023
+//VERSIONE 4.31 rel del 12-12-2023
 $ambiente = "";
 
 if(isset($_GET['ambiente'])){
