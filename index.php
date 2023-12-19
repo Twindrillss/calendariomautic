@@ -1,15 +1,17 @@
 <?php
 //controllo cookie per accesso
 
-if (isset($_COOKIE["AccessoConsentitoMautic"])) {
+$hashedvalue = hash(date("Y-m-d"));
 
+
+if (isset($_COOKIE["AccessoConsentitoMautic"]) && $hashedvalue == $_COOKIE["AccessoConsentitoMautic"]) {
 
 ?>
 
 <?php
 //CALENDARIO COMMERCIALE MAUTIC - 2023 DANIEL INTRIERI - TUTTI I DIRITTI RISERVATI
 //CONCESSO PER L'UTILIZZO A 360FORMA
-//VERSIONE 4.31 rel del 12-12-2023
+//VERSIONE 5.00 rel del 19-12-2023
 $ambiente = "";
 
 if(isset($_GET['ambiente'])){
