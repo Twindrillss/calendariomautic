@@ -161,7 +161,7 @@ array_push($arrayconfronti, $idlead);
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>360Forma - Calendario Commerciale</title>
+		<title>Mautic - Calendario Commerciale</title>
 		<link href="stilemodal.css" rel="stylesheet" type="text/css">
 		<link href="calendar.css" rel="stylesheet" type="text/css">
 		<link href="nuovotooltip.css" rel="stylesheet" type="text/css">
