@@ -54,7 +54,7 @@ if (isset($_GET['anno'])){
 
 if (empty($mesepagina)){
 $mesepagina = date("m");
-$data = date($annouso."-m").'-1';
+$data = $annouso . '-'. date("m").'-1';
 $data_anno = $annouso;
 $data_mese = date("m");
 } else {
@@ -85,7 +85,7 @@ $fine = $data_anno.'-'.$data_mese.'-'.$calcolo;
 if (date("m")==$mesepagina && $annouso == date("Y")){
 $calendar = new Calendar(date("Y-m-d"));
 }else if (empty($mesepagina)) {
-$calendar = new Calendar(date($annouso."-m-d"));
+$calendar = new Calendar($annouso.'-'.date("m-d"));
 }else {
 $calendar = new Calendar($data);
 }
