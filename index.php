@@ -252,8 +252,19 @@ array_push($arrayconfronti, $idlead);
 </div>
 <div style="text-align:center;">
 	<select name="annoselect" id="annoselect" onchange="impostaanno()">
+
+<?php ?
+	if ($annouso < date("Y")) {
+		
+		?>
+		
   <option value="<?php echo $annouso ?>">Anno <?php echo $annouso ?></option>
+  <option value="<?php echo date("Y") ?>">Anno <?php echo date("Y") ?></option>
+
+		<?php } else { ?>
+ <option value="<?php echo $annouso ?>">Anno <?php echo $annouso ?></option>
   <option value="<?php echo $annouso - 1 ?>">Anno <?php echo $annouso - 1 ?></option>
+		<?php } ?>
 </select>
 </div>
 </div>
