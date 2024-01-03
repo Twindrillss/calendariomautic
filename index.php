@@ -250,12 +250,12 @@ array_push($arrayconfronti, $idlead);
 	
 	?>
 </div>
-
+<div style="text-align:center;">
 	<select name="annoselect" id="annoselect" onchange="impostaanno()">
   <option value="<?php echo $annouso ?>">Anno <?php echo $annouso ?></option>
   <option value="<?php echo $annouso - 1 ?>">Anno <?php echo $annouso - 1 ?></option>
 </select>
-	
+</div>
 </div>
 
 
