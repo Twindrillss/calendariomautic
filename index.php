@@ -190,7 +190,7 @@ array_push($arrayconfronti, $idlead);
 	        while($res = mysqli_fetch_array($result)) {
 	            if ($res['id'] != 1){
 	            $colorepick = aggiustacolore($res['id']);
-	            echo '<div class="event '.$colorepick.'"><a style="color:white;" href="index.php?anno='.$annouso.'ambiente='.$ambiente.'&idutente='.$res['id'].'">'.$res['first_name'].' '.$res['last_name'].'</a></div>';
+	            echo '<div class="event '.$colorepick.'"><a style="color:white;" href="index.php?anno='.$annouso.'&ambiente='.$ambiente.'&idutente='.$res['id'].'">'.$res['first_name'].' '.$res['last_name'].'</a></div>';
 	        
 	            }
 	            }
