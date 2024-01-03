@@ -11,7 +11,7 @@ if (isset($_COOKIE["AccessoConsentitoMautic"]) && $hashedvalue == $_COOKIE["Acce
 <?php
 //CALENDARIO COMMERCIALE MAUTIC - 2023 DANIEL INTRIERI - TUTTI I DIRITTI RISERVATI
 //CONCESSO PER L'UTILIZZO A 360FORMA
-//VERSIONE 5.00 rel del 19-12-2023
+//VERSIONE 5.50 rel del 03-01-2024
 $ambiente = "";
 
 if(isset($_GET['ambiente'])){
@@ -45,15 +45,22 @@ $mesepagina = "";
 if (isset($_GET['mese'])){
 $mesepagina = $_GET['mese'];
 }
+
+if (isset($_GET['anno'])){
+	$annouso = $_GET['anno'];
+} else {
+	$annouso = date("Y");
+}
+
 if (empty($mesepagina)){
 $mesepagina = date("m");
-$data = date("Y-m").'-1';
-$data_anno = date("Y");
+$data = date($annouso."-m").'-1';
+$data_anno = $annouso;
 $data_mese = date("m");
 } else {
-$data = date("Y").'-'.$mesepagina.'-'.'1';
+$data = $annouso.'-'.$mesepagina.'-'.'1';
 $data_mese = $mesepagina;
-$data_anno = date("Y");
+$data_anno = $annouso;
 }
 
 //calcolo per tasto mese successivo
@@ -75,10 +82,10 @@ if ($data_mese == 1){
 
 $calcolo = cal_days_in_month(CAL_GREGORIAN,$data_mese,$data_anno);
 $fine = $data_anno.'-'.$data_mese.'-'.$calcolo;
-if (date("m")==$mesepagina){
+if (date("m")==$mesepagina && $annouso == date("Y")){
 $calendar = new Calendar(date("Y-m-d"));
 }else if (empty($mesepagina)) {
-$calendar = new Calendar(date("Y-m-d"));
+$calendar = new Calendar(date($annouso."-m-d"));
 }else {
 $calendar = new Calendar($data);
 }
@@ -183,7 +190,7 @@ array_push($arrayconfronti, $idlead);
 	        while($res = mysqli_fetch_array($result)) {
 	            if ($res['id'] != 1){
 	            $colorepick = aggiustacolore($res['id']);
-	            echo '<div class="event '.$colorepick.'"><a style="color:white;" href="index.php?ambiente='.$ambiente.'&idutente='.$res['id'].'">'.$res['first_name'].' '.$res['last_name'].'</a></div>';
+	            echo '<div class="event '.$colorepick.'"><a style="color:white;" href="index.php?anno='.$annouso.'ambiente='.$ambiente.'&idutente='.$res['id'].'">'.$res['first_name'].' '.$res['last_name'].'</a></div>';
 	        
 	            }
 	            }
@@ -206,9 +213,9 @@ array_push($arrayconfronti, $idlead);
 	        
 <p class="titolinav">Visualizzazione Lead</p>
 
-<a class="vocilead <?php if ($ambiente == 2) {echo 'cerchiato';} ?>" href="index.php?mese=<?php echo $data_mese ?>&idutente=<?php echo $idutente ?>&ambiente=2">Negativi</a>
-<a class="vocilead <?php if ($ambiente == 3) {echo 'cerchiato';} ?>" href="index.php?mese=<?php echo $data_mese ?>&idutente=<?php echo $idutente ?>&ambiente=3">Da lavorare</a>
-<a class="vocilead <?php if ($ambiente == 1) {echo 'cerchiato';} ?>" href="index.php?mese=<?php echo $data_mese ?>&idutente=<?php echo $idutente ?>&ambiente=1">Tutto</a>
+<a class="vocilead <?php if ($ambiente == 2) {echo 'cerchiato';} ?>" href="index.php?mese=<?php echo $data_mese ?>&idutente=<?php echo $idutente ?>&ambiente=2&anno=<?php echo $annouso ?>">Negativi</a>
+<a class="vocilead <?php if ($ambiente == 3) {echo 'cerchiato';} ?>" href="index.php?mese=<?php echo $data_mese ?>&idutente=<?php echo $idutente ?>&ambiente=3&anno=<?php echo $annouso ?>">Da lavorare</a>
+<a class="vocilead <?php if ($ambiente == 1) {echo 'cerchiato';} ?>" href="index.php?mese=<?php echo $data_mese ?>&idutente=<?php echo $idutente ?>&ambiente=1&anno=<?php echo $annouso ?>">Tutto</a>
 
 <p><b style="color:red;">Rosso</b> indica selezione corrente</p>
 
@@ -226,23 +233,29 @@ array_push($arrayconfronti, $idlead);
 			<?=$calendar?>
 		</div>
 		<div style="text-align:center;margin-top:20px;margin-bottom:20px;">
-		<a href="index.php?mese=<?php echo $datameseprec ?>&idutente=<?php echo $idutente ?>&ambiente=<?php echo $ambiente ?>" class="previous">&laquo; Mese Precedente</a>
+		<a href="index.php?anno<?php echo $annouso ?>&mese=<?php echo $datameseprec ?>&idutente=<?php echo $idutente ?>&ambiente=<?php echo $ambiente ?>" class="previous">&laquo; Mese Precedente</a>
 
 <?php 
 	if ($datamesesucc == 1){
 		?>
-<a href="index.php?mese=<?php echo $datamesesucc ?>&idutente=<?php echo $idutente ?>&ambiente=<?php echo $ambiente ?>" class="next">Torna a Gennaio &raquo;</a>
+<a href="index.php?anno=<?php echo $annouso ?>&mese=<?php echo $datamesesucc ?>&idutente=<?php echo $idutente ?>&ambiente=<?php echo $ambiente ?>" class="next">Torna a Gennaio &raquo;</a>
 			<?php
 	} else {
 	
 	?>
 			
-<a href="index.php?mese=<?php echo $datamesesucc ?>&idutente=<?php echo $idutente ?>&ambiente=<?php echo $ambiente ?>" class="next">Mese Successivo &raquo;</a>
+<a href="index.php?anno=<?php echo $annouso ?>&mese=<?php echo $datamesesucc ?>&idutente=<?php echo $idutente ?>&ambiente=<?php echo $ambiente ?>" class="next">Mese Successivo &raquo;</a>
 <?php
 			} 
 	
 	?>
 </div>
+
+	<select name="annoselect" id="annoselect" onchange="impostaanno()">
+  <option value="<?php echo $annouso ?>">Anno <?php echo $annouso ?></option>
+  <option value="<?php echo $annouso - 1 ?>">Anno <?php echo $annouso - 1 ?></option>
+</select>
+	
 </div>
 
 
@@ -291,6 +304,13 @@ array_push($arrayconfronti, $idlead);
 <!-- SCRIPT FUNZIONAMENTO MODAL -->
 
 <script>
+
+function impostaanno() {
+	var x = document.getElementById("annoselect").value;
+	window.location.href = 'index.php?anno=' + x;
+}
+
+	
 
 function riprogramma(){
     var id = document.getElementById('databasenote').innerHTML;
