@@ -253,7 +253,7 @@ array_push($arrayconfronti, $idlead);
 <div style="text-align:center;">
 	<select name="annoselect" id="annoselect" onchange="impostaanno()">
 
-<?php ?
+<?php
 	if ($annouso < date("Y")) {
 		
 		?>
