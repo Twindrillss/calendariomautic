@@ -96,7 +96,7 @@ $nomecognomefix = str_replace($rimuovi, "", $event[0]);
     
 
                         $html .= '<div class="event tooltip' . $event[3] . '">';
-                        $html .= '<a class="nomecognomecalendario" target="_blank" style="color:white;" onclick="boxazioni'."('".$nomecognomefix."','".$event[5]."','http://gestionale.360forma.com/s/contacts/view/".$event[4]."'".",'".$event[6]."'".",'".$datacompletahtml5."'".')">';
+                        $html .= '<a class="nomecognomecalendario" target="_blank" style="color:white;" onclick="boxazioni'."('".$nomecognomefix."','".$event[5]."','/s/contacts/view/".$event[4]."'".",'".$event[6]."'".",'".$datacompletahtml5."'".')">';
                         $html .= '<span class="tooltiptext">Nota: '.$event[5].'</span>';
                         $html .= $event[0];
                         $html .= '</a>';
